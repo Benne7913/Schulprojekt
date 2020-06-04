@@ -1,1 +1,1 @@
-License: MIT
+Schulprojekt von Lars und Benedikt
