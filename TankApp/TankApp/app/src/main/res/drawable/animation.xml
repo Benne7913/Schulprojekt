@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/tank1" android:duration="400"/>
+    <item android:drawable="@drawable/tank2" android:duration="400"/>
+    <item android:drawable="@drawable/tank3" android:duration="400"/>
+    <item android:drawable="@drawable/tank4" android:duration="400"/>
+    <item android:drawable="@drawable/tank5" android:duration="400"/>
+    <item android:drawable="@drawable/tank6" android:duration="400"/>
+</animation-list>
