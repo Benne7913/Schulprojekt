@@ -1,9 +1,14 @@
 package com.example.tankapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -25,5 +30,33 @@ public class MainActivity extends AppCompatActivity {
                 SearchAnimation.start();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.allgemein:
+                    Intent intentAllg = new Intent(this, AllgEinstellungen.class);
+                    this.startActivity(intentAllg);
+                    return true;
+            case R.id.anzeige:
+                    Intent intentAnzeige = new Intent(this, Anzeige.class);
+                    this.startActivity(intentAnzeige);
+                    return true;
+            case R.id.info:
+                    Intent intentInfo = new Intent(this, Info.class);
+                    this.startActivity(intentInfo);
+                    return true;
+            default:
+                    return super.onOptionsItemSelected(item);
+        }
+
     }
 }
