@@ -6,4 +6,5 @@
     <item android:drawable="@drawable/tank4" android:duration="400"/>
     <item android:drawable="@drawable/tank5" android:duration="400"/>
     <item android:drawable="@drawable/tank6" android:duration="400"/>
+    <item android:drawable="@drawable/tank7" android:duration="400"/>
 </animation-list>
