@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/no_internet"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Keine Verbindung\nmöglich"
+        android:gravity="center"
+        android:textColor="#0080FF"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Bitte überprüfen Sie Ihre\n Internetverbindung."
+        android:textColor="#0080FF"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/restartapp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="#0080FF"
+        android:text="Jetzt aktualisieren"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textAllCaps="false"/>
+
+</LinearLayout>
