@@ -3,8 +3,11 @@ package com.example.tankapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,11 +18,14 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
 
     AnimationDrawable SearchAnimation;
+    private BroadcastReceiver MyReceiver = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MyReceiver = new MyReceiver();
+        broadcastIntent();
         ImageView SearchImage = (ImageView) findViewById(R.id.search_image);
         SearchImage.setBackgroundResource(R.drawable.animation);
         SearchAnimation = (AnimationDrawable) SearchImage.getBackground();
@@ -58,5 +64,14 @@ public class MainActivity extends AppCompatActivity {
                     return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    public void broadcastIntent() {
+        registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(MyReceiver);
     }
 }
