@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         switch(requestCode){
             case PERMISSIONS_FINE_LOCATION:
                 if(grantResults[0] != PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(this, "Keine Berechtigungen um richtig zu arbeiten", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Damit die App richtig funktioniert, müssen Sie die Standortermittlung zulassen.\nDie App wird nun beendet", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 break;
