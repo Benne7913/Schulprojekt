@@ -4,9 +4,6 @@
     <item android:id="@+id/allgemein"
           android:title="Allgemein"
           app:showAsAction="never"/>
-    <item android:id="@+id/anzeige"
-        android:title="Anzeige"
-        app:showAsAction="never"/>
     <item android:id="@+id/info"
         android:title="Info"
         app:showAsAction="never"/>

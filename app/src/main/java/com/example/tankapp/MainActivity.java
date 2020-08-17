@@ -68,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intentAllg = new Intent(this, AllgEinstellungen.class);
                     this.startActivity(intentAllg);
                     return true;
-            case R.id.anzeige:
-                    Intent intentAnzeige = new Intent(this, Anzeige.class);
-                    this.startActivity(intentAnzeige);
-                    return true;
             case R.id.info:
                     Intent intentInfo = new Intent(this, Info.class);
                     this.startActivity(intentInfo);

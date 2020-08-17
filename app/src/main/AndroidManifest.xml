@@ -18,9 +18,6 @@
             android:label="Info"
             android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".Anzeige"
-            android:label="Anzeige"
-            android:parentActivityName=".MainActivity"/>
         <activity android:name=".AllgEinstellungen"
                   android:label="Allgemein"
                   android:parentActivityName=".MainActivity"/>
