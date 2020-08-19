@@ -24,6 +24,8 @@ public class Results extends AppCompatActivity {
         setContentView(R.layout.activity_results);
 
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+        expandableListView.setChildIndicator(null);
+        expandableListView.setChildDivider(getResources().getDrawable(R.color.white));
         expandableListDetail = ExpandableListDataPump.getData();
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
