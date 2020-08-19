@@ -21,6 +21,9 @@
         <activity android:name=".AllgEinstellungen"
                   android:label="Allgemein"
                   android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Results"
+            android:label="Ergebnisse"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

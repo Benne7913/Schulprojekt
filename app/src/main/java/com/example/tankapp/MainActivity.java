@@ -50,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 SearchAnimation.start();
                 getLocation(view);
+
+                Intent Results = new Intent(MainActivity.this, Results.class);
+                MainActivity.this.startActivity(Results);
+
             }
         });
     }
