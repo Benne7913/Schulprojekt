@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 SearchAnimation.start();
                 getLocation(view);
+                startActivity(new Intent(MainActivity.this, Results.class));
             }
         });
     }
