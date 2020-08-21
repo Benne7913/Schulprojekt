@@ -18,7 +18,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,8 +31,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Internetverbindung prüfen
         MyReceiver = new MyReceiver();
         broadcastIntent();
+
+        //Bild für die Animation zuordnen
         ImageView SearchImage = (ImageView) findViewById(R.id.search_image);
         SearchImage.setBackgroundResource(R.drawable.animation);
         SearchAnimation = (AnimationDrawable) SearchImage.getBackground();
