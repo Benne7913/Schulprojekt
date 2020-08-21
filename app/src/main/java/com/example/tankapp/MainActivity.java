@@ -92,22 +92,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void broadcastIntent() {
-        registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-    }
     @Override
     protected void onPause() {
         super.onPause();
         unregisterReceiver(MyReceiver);
     }
 
+    //Prüfen, ob eine Internetverbindung besteht
+    public void broadcastIntent() {
+        registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    //Gibt die aktuellen Stanndortdaten zurück
     public void getLocation(View view){
         gpsTracker = new GpsTracker(MainActivity.this);
         if(gpsTracker.canGetLocation()){
             latitude = String.valueOf(gpsTracker.getLatitude());
             longitude = String.valueOf(gpsTracker.getLongitude());
-            Toast.makeText(MainActivity.this, latitude + " + " + longitude,
-                    Toast.LENGTH_LONG).show();
         }else{
             gpsTracker.showSettingsAlert();
         }
