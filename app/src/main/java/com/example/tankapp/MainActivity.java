@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,12 +48,21 @@ public class MainActivity extends AppCompatActivity {
 
         SearchImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 SearchAnimation.start();
-                getLocation(view);
-
-                Intent Results = new Intent(MainActivity.this, Results.class);
-                MainActivity.this.startActivity(Results);
+                int duration = 0;
+                for (int i=0; i<SearchAnimation.getNumberOfFrames(); i++){
+                    duration = duration + SearchAnimation.getDuration(i);
+                }
+                duration += 1200;
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable(){
+                    public void run() {
+                        getLocation(view);
+                        Intent Results = new Intent(MainActivity.this, Results.class);
+                        MainActivity.this.startActivity(Results);
+                    }
+                }, duration);
 
             }
         });
