@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 getLocation(view);
 
             //Einfügen
-            
+                Intent intent = new Intent(this, Results_Actvity.class);
+                startActivity(intent);
 
             }
         });

@@ -33,12 +33,13 @@ public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Result
 
     @Override
     public void onBindViewHolder(@NonNull Results_Adapter.Results_Holder holder, int position) {
-
+        holder.titleText.setText(tankstellen.getName());
+        holder.rangeText.setText(tankstellen.getRange());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 1; //MUSS GEÄNDERT WERDEN!°!!!!
     }
 
     public class Results_Holder extends RecyclerView.ViewHolder{

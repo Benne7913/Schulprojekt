@@ -1,6 +1,7 @@
 package com.example.tankapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -22,5 +23,8 @@ public class Results_Actvity extends AppCompatActivity {
 
         Tankstelle tank = new Tankstelle();
         Results_Adapter adapter = new Results_Adapter(this, tank );
+
+        rcView.setAdapter(adapter);
+        rcView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
