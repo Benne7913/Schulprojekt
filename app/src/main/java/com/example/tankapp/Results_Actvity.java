@@ -11,7 +11,7 @@ import org.json.JSONArray;
 public class Results_Actvity extends AppCompatActivity {
 
     private RecyclerView rcView;
-    private JSONArray jsonArray;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
