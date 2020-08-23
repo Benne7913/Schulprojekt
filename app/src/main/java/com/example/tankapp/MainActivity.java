@@ -58,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
                 getLocation(view);
 
             //Einfügen
+                Model model = new Model();
                 Intent intent = new Intent(MainActivity.this, Results_Actvity.class);
+                intent.putExtra("Model", model);
                 startActivity(intent);
 
             }

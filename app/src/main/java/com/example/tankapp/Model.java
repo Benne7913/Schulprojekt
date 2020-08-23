@@ -2,7 +2,9 @@ package com.example.tankapp;
 
 //Enthält alle Informationen
 
-public class Model
+import java.io.Serializable;
+
+public class Model implements Serializable
 {
     private int radius = 5;
 
