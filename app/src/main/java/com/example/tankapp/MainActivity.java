@@ -27,10 +27,16 @@ public class MainActivity extends AppCompatActivity {
     private String latitude;
     private String longitude;
 
+    private Model model;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Model initalisieren
+        model = new Model();
+
         MyReceiver = new MyReceiver();
         broadcastIntent();
         ImageView SearchImage = (ImageView) findViewById(R.id.search_image);
@@ -51,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 SearchAnimation.start();
                 getLocation(view);
 
-                Intent Results = new Intent(MainActivity.this, Results.class);
-                MainActivity.this.startActivity(Results);
+            //Einfügen
+            
 
             }
         });
@@ -71,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.allgemein:
                     Intent intentAllg = new Intent(this, AllgEinstellungen.class);
                     this.startActivity(intentAllg);
+
                     return true;
             case R.id.info:
                     Intent intentInfo = new Intent(this, Info.class);
