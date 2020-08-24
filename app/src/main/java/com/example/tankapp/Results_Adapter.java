@@ -38,7 +38,7 @@ public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Result
     @Override
     public void onBindViewHolder(@NonNull Results_Adapter.Results_Holder holder, int position) {
              holder.titleText.setText(m_kTankstellen.get(position).getName());
-             holder.rangeText.setText(m_kTankstellen.get(position).getRange() + " km");
+             holder.rangeText.setText(String.valueOf(m_kTankstellen.get(position).getDist() + " km"));
     }
 
     @Override

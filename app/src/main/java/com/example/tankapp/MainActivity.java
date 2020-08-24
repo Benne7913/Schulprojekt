@@ -20,11 +20,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity{
 
     AnimationDrawable SearchAnimation;
     private BroadcastReceiver MyReceiver = null;
@@ -32,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private String latitude;
     private String longitude;
 
-    private Model model;
+    private Model m_kModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Model initalisieren
-        model = new Model();
+        m_kModel = new Model();
 
         MyReceiver = new MyReceiver();
         broadcastIntent();
@@ -62,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 SearchAnimation.start();
                 getLocation(view);
 
-            //Einfügen
-                Model model = new Model();
+
                 // Creating a list
                 List<Tankstelle> l1 = new ArrayList<Tankstelle>();
                 Tankstelle t1 = new Tankstelle();
@@ -73,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 t2.setName("tank2");
                 l1.add(t1);
                 l1.add(t2);
-
 
 
                 Intent intent = new Intent(MainActivity.this, Results_Actvity.class);
@@ -86,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,5 +144,6 @@ public class MainActivity extends AppCompatActivity {
             gpsTracker.showSettingsAlert();
         }
     }
+
 
 }
