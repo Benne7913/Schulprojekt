@@ -1,6 +1,8 @@
 package com.example.tankapp;
 
-public class Tankstelle {
+import java.io.Serializable;
+
+public class Tankstelle implements Serializable {
 
     private String name = "test";
     private String range = "5";

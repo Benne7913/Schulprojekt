@@ -12,12 +12,17 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,8 +64,23 @@ public class MainActivity extends AppCompatActivity {
 
             //Einfügen
                 Model model = new Model();
+                // Creating a list
+                List<Tankstelle> l1 = new ArrayList<Tankstelle>();
+                Tankstelle t1 = new Tankstelle();
+                t1.setName("tank1");
+
+                Tankstelle t2 = new Tankstelle();
+                t2.setName("tank2");
+                l1.add(t1);
+                l1.add(t2);
+
+
+
                 Intent intent = new Intent(MainActivity.this, Results_Actvity.class);
-                intent.putExtra("Model", model);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("tankstellenliste", (Serializable) l1);
+                intent.putExtras(bundle);
+
                 startActivity(intent);
 
             }

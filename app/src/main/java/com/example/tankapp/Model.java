@@ -2,11 +2,14 @@ package com.example.tankapp;
 
 //Enthält alle Informationen
 
-import java.io.Serializable;
 
-public class Model implements Serializable
+import java.util.List;
+
+public class Model
 {
     private int radius = 5;
+    // Creating a list
+    public List<Tankstelle> m_kTankstellen;
 
     public Model()
     {

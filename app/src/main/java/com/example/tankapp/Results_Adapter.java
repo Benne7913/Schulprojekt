@@ -11,16 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Results_Holder> {
 
     private Context context;
-    private Tankstelle tankstellen;
+    private ArrayList<Tankstelle> m_kTankstellen;
 
-    public Results_Adapter(Context ct, Tankstelle pkTankstellen)
+    public Results_Adapter(Context ct, ArrayList<Tankstelle> pkTankstellen)
     {
         this.context = ct;
-        this.tankstellen = pkTankstellen;
-
+        m_kTankstellen = pkTankstellen;
     }
 
     @NonNull
@@ -31,16 +34,18 @@ public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Result
         return new Results_Holder(view);
     }
 
+    //Listet alle Tankstellen auf
     @Override
     public void onBindViewHolder(@NonNull Results_Adapter.Results_Holder holder, int position) {
-        holder.titleText.setText(tankstellen.getName());
-        holder.rangeText.setText(tankstellen.getRange());
+             holder.titleText.setText(m_kTankstellen.get(position).getName());
+             holder.rangeText.setText(m_kTankstellen.get(position).getRange() + " km");
     }
 
     @Override
     public int getItemCount() {
-        return 1; //MUSS GEÄNDERT WERDEN!°!!!!
+        return m_kTankstellen.size();
     }
+
 
     public class Results_Holder extends RecyclerView.ViewHolder{
 
