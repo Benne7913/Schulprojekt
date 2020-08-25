@@ -7,7 +7,8 @@
     tools:context=".Results_Actvity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id ="@+id/view"
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark" />
 </androidx.constraintlayout.widget.ConstraintLayout>

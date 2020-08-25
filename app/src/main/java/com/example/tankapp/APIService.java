@@ -27,6 +27,7 @@ public class APIService extends Service
 {
     public static Handler ereignisHandler;
     public static Results_Actvity view;
+    public static String url = " ";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -37,7 +38,7 @@ public class APIService extends Service
     public void onCreate() {
         super.onCreate();
 
-        String url = "https://creativecommons.tankerkoenig.de/json/list.php?lat=52.521&lng=13.438&rad=1.5&sort=dist&type=all&apikey=00000000-0000-0000-0000-000000000002";
+       if(url.isEmpty()) { return; }
 
 
         RequestQueue queue = Volley.newRequestQueue(view);

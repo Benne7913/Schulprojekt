@@ -74,14 +74,12 @@ public class MainActivity extends AppCompatActivity{
 
                 //Aufruf der neuen Activity
                 Intent intent = new Intent(MainActivity.this, Results_Actvity.class);
+                intent.putExtra("model",m_kModel);
                 startActivity(intent);
 
             }
         });
     }
-
-
-
 
 
     @Override
@@ -96,6 +94,7 @@ public class MainActivity extends AppCompatActivity{
         switch(item.getItemId()){
             case R.id.allgemein:
                     Intent intentAllg = new Intent(this, AllgEinstellungen.class);
+                    intentAllg.putExtra("model",m_kModel);
                     this.startActivity(intentAllg);
 
                     return true;
@@ -123,6 +122,8 @@ public class MainActivity extends AppCompatActivity{
         if(gpsTracker.canGetLocation()){
             latitude = String.valueOf(gpsTracker.getLatitude());
             longitude = String.valueOf(gpsTracker.getLongitude());
+            m_kModel.setLat(latitude);
+            m_kModel.setLng(longitude);
             //Toast.makeText(MainActivity.this, latitude + " + " + longitude,
                 //    Toast.LENGTH_LONG).show();
         }else{

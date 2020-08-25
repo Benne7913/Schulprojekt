@@ -2,11 +2,13 @@ package com.example.tankapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class AllgEinstellungen extends AppCompatActivity {
 
-    public static int currentRange = 5;
+    private Model m_kModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,6 +16,9 @@ public class AllgEinstellungen extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Model bekommen
+        Intent intent = getIntent();
+        m_kModel = (Model) intent.getSerializableExtra("model");
     }
 
 

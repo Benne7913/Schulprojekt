@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class Results_Actvity extends AppCompatActivity {
 
     private RecyclerView rcView;
+    private Model m_kModel;
 
 /////////////////////////////////////////////////////////////////////////////////
     private EreignisHandler ereignisHandler = new EreignisHandler();
@@ -36,6 +37,10 @@ public class Results_Actvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
+        //Model bekommen
+        Intent intent = getIntent();
+        m_kModel = (Model) intent.getSerializableExtra("model");
 
         //Ladebalken
         runLoading();
@@ -60,9 +65,21 @@ public class Results_Actvity extends AppCompatActivity {
     {
         startService(new Intent(this, APIService.class));
         APIService.ereignisHandler = ereignisHandler;
+        APIService.url = getAPIString();
         APIService.view = this;
 
         stopService(new Intent(this, APIService.class));
+    }
+
+    //create API [URL] String
+    private String getAPIString()
+    {
+        //String url = "https://creativecommons.tankerkoenig.de/json/list.php?lat=52.521&lng=13.438&rad=10&sort=dist&type=all&apikey=00000000-0000-0000-0000-000000000002";
+        String url = "https://creativecommons.tankerkoenig.de/json/list.php?lat=" + m_kModel.getLat()+
+                        "&lng="+ m_kModel.getLng()+
+                        "&rad="+m_kModel.getRadius()+
+                        "&sort=dist&type=all&apikey=00000000-0000-0000-0000-000000000002";
+        return url;
     }
 
     //Ladebalken

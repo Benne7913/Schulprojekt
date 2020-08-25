@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,8 +38,48 @@ public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Result
     //Listet alle Tankstellen auf
     @Override
     public void onBindViewHolder(@NonNull Results_Adapter.Results_Holder holder, int position) {
-             holder.titleText.setText(m_kTankstellen.get(position).getName());
-             holder.rangeText.setText(String.valueOf(m_kTankstellen.get(position).getDist() + " km"));
+            if (!m_kTankstellen.get(position).getBrand().isEmpty())
+            {
+                holder.titleText.setText(m_kTankstellen.get(position).getBrand());
+                holder.streetText.setText(m_kTankstellen.get(position).getStreet() + " " + m_kTankstellen.get(position).getHousnumber().toString());
+                holder.rangeText.setText("Entfernung: " + String.valueOf(m_kTankstellen.get(position).getDist() + " km"));
+
+                switch (m_kTankstellen.get(position).getBrand().toLowerCase()) {
+                    case "aral":
+                        holder.imageView.setImageResource(R.drawable.aral);
+                        break;
+                    case "total":
+                        holder.imageView.setImageResource(R.drawable.total);
+                        break;
+                    case "sprint":
+                        holder.imageView.setImageResource(R.drawable.sprint);
+                        break;
+                    case "shell":
+                        holder.imageView.setImageResource(R.drawable.shell);
+                        break;
+                    case "esso":
+                        holder.imageView.setImageResource(R.drawable.esso);
+                        break;
+                    case "star":
+                        holder.imageView.setImageResource(R.drawable.star);
+                        break;
+                    case "jet":
+                        holder.imageView.setImageResource(R.drawable.jet);
+                        break;
+                    case "elan":
+                        holder.imageView.setImageResource(R.drawable.elan);
+                        break;
+                    case "agip":
+                        holder.imageView.setImageResource(R.drawable.agip);
+                        break;
+                    case "ed":
+                        holder.imageView.setImageResource(R.drawable.ed);
+                        break;
+                    default:
+                        holder.imageView.setImageResource(R.drawable.tanklogo);
+                        break;
+                }
+            }
     }
 
     @Override
@@ -49,12 +90,15 @@ public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Result
 
     public class Results_Holder extends RecyclerView.ViewHolder{
 
-        private TextView titleText, rangeText;
+        private TextView titleText, streetText ,rangeText;
+        private ImageView imageView;
 
         public Results_Holder(@NonNull View itemView) {
             super(itemView);
             titleText = itemView.findViewById(R.id.textView);
+            streetText = itemView.findViewById(R.id.textStreet);
             rangeText = itemView.findViewById(R.id.textRange);
+            imageView = itemView.findViewById(R.id.imageView);
         }
     }
 }
