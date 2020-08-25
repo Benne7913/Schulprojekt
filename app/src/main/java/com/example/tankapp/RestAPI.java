@@ -43,7 +43,7 @@ public class RestAPI
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        stelle1 = toArray(response.toString());
+                      toArray(response.toString());
 
                     }
                 }, new Response.ErrorListener() {

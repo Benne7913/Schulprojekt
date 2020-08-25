@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity{
                 SearchAnimation.start();
                 getLocation(view);
 
-
+            /*
                 // Creating a list
                 List<Tankstelle> l1 = new ArrayList<Tankstelle>();
                 Tankstelle t1 = new Tankstelle();
@@ -82,12 +82,15 @@ public class MainActivity extends AppCompatActivity{
                 t2.setName("tank2");
                 l1.add(t1);
                 l1.add(t2);
-
+                */
 
                 Intent intent = new Intent(MainActivity.this, Results_Actvity.class);
+
+            /*
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("tankstellenliste", (Serializable) l1);
                 intent.putExtras(bundle);
+            */
 
                 startActivity(intent);
 
@@ -138,8 +141,8 @@ public class MainActivity extends AppCompatActivity{
         if(gpsTracker.canGetLocation()){
             latitude = String.valueOf(gpsTracker.getLatitude());
             longitude = String.valueOf(gpsTracker.getLongitude());
-            Toast.makeText(MainActivity.this, latitude + " + " + longitude,
-                    Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, latitude + " + " + longitude,
+                //    Toast.LENGTH_LONG).show();
         }else{
             gpsTracker.showSettingsAlert();
         }
