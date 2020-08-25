@@ -72,26 +72,8 @@ public class MainActivity extends AppCompatActivity{
                 SearchAnimation.start();
                 getLocation(view);
 
-            /*
-                // Creating a list
-                List<Tankstelle> l1 = new ArrayList<Tankstelle>();
-                Tankstelle t1 = new Tankstelle();
-                t1.setName("tank1");
-
-                Tankstelle t2 = new Tankstelle();
-                t2.setName("tank2");
-                l1.add(t1);
-                l1.add(t2);
-                */
-
+                //Aufruf der neuen Activity
                 Intent intent = new Intent(MainActivity.this, Results_Actvity.class);
-
-            /*
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("tankstellenliste", (Serializable) l1);
-                intent.putExtras(bundle);
-            */
-
                 startActivity(intent);
 
             }

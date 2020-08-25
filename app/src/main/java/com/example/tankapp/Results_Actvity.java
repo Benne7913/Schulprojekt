@@ -65,6 +65,7 @@ public class Results_Actvity extends AppCompatActivity {
         stopService(new Intent(this, APIService.class));
     }
 
+    //Ladebalken
     private void runLoading()
     {
         final ProgressDialog progress = new ProgressDialog(this);
