@@ -9,7 +9,6 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,14 +18,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.spark.submitbutton.SubmitButton;
 
 
 public class MainActivity extends AppCompatActivity{
 
-    AnimationDrawable SearchAnimation;
     private BroadcastReceiver MyReceiver = null;
     private GpsTracker gpsTracker;
     private Model m_kModel;
+    private SubmitButton SearchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +36,16 @@ public class MainActivity extends AppCompatActivity{
         //Model initalisieren
         m_kModel = new Model();
 
+        //Registrieren des Internet-Receivers
         MyReceiver = new MyReceiver();
         broadcastIntent();
-        ImageView SearchImage = (ImageView) findViewById(R.id.search_image);
-        SearchImage.setBackgroundResource(R.drawable.animation);
-        SearchAnimation = (AnimationDrawable) SearchImage.getBackground();
+
+        //Logo der ImageView hinzufügen
+        ImageView Logo = (ImageView) findViewById(R.id.logo);
+        Logo.setBackgroundResource(R.drawable.tank1);
+
+        //Suchen Button zuweisen
+        SearchButton = (SubmitButton) findViewById(R.id.search_button);
 
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
@@ -50,30 +55,25 @@ public class MainActivity extends AppCompatActivity{
             e.printStackTrace();
         }
 
-        SearchImage.setOnClickListener(new View.OnClickListener() {
+        SearchButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(final View view) {
-                SearchAnimation.start();
-
-                int duration = 0;
-                for (int i=0; i<SearchAnimation.getNumberOfFrames(); i++){
-                    duration = duration + SearchAnimation.getDuration(i);
-                }
+            public void onClick(View view) {
+                int duration = 3000;
                 Handler handler = new Handler();
-                handler.postDelayed(new Runnable(){
+                //Warten bis die Animation zu Ende ist
+                handler.postDelayed(new Runnable() {
                     public void run() {
-                        getLocation(view);
-                        //Aufruf der neuen Activity
-                        Intent intentRes = new Intent(MainActivity.this, Results_Actvity.class);
-                        intentRes.putExtra("model",m_kModel);
-                        startActivity(intentRes);
-                    }
-                }, duration);
-
+                        if(getLocation()) {
+                            //Aufruf der neuen Activity
+                            Intent intentRes = new Intent(MainActivity.this, Results_Actvity.class);
+                            intentRes.putExtra("model", m_kModel);
+                            startActivity(intentRes);
+                        }
+                    }}, duration);
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity{
             default:
                     return super.onOptionsItemSelected(item);
         }
-
     }
 
     @Override
@@ -106,18 +105,25 @@ public class MainActivity extends AppCompatActivity{
         unregisterReceiver(MyReceiver);
     }
 
-    public void getLocation(View view){
-        gpsTracker = new GpsTracker(MainActivity.this);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    public boolean getLocation(){
+        gpsTracker = new GpsTracker(this);
         if(gpsTracker.canGetLocation()){
             m_kModel.setLat(String.valueOf(gpsTracker.getLatitude()));
             m_kModel.setLng(String.valueOf(gpsTracker.getLongitude()));
+            return true;
         }else{
             gpsTracker.showSettingsAlert();
+            return false;
         }
     }
 
     public void broadcastIntent() {
         registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
-
 }

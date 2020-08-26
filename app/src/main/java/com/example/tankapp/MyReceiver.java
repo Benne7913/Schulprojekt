@@ -14,7 +14,7 @@ public class MyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, final Intent intent) {
         String status = NetworkUtil.getConnectivityStatusString(context);
-        dialog = new Dialog(context,android.R.style.Theme_NoTitleBar_Fullscreen);
+        dialog = new Dialog(context,android.R.style.Theme_DeviceDefault);
         dialog.setContentView(R.layout.internet_connection_check);
         Button restartapp = (Button)dialog.findViewById(R.id.restartapp);
 
