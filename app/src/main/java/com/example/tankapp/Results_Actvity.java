@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class Results_Actvity extends AppCompatActivity {
 
+    public static boolean isChildActiv = false;
     private RecyclerView rcView;
     private Model m_kModel;
 
@@ -117,7 +118,10 @@ public class Results_Actvity extends AppCompatActivity {
 
     @Override
     protected void onDestroy(){
-        super.onDestroy();
+        if (!isChildActiv)
+        {
+            super.onDestroy();
+        }
 
     }
 

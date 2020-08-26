@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.spark.submitbutton.SubmitButton;
 
@@ -40,9 +39,6 @@ public class MainActivity extends AppCompatActivity{
         MyReceiver = new MyReceiver();
         broadcastIntent();
 
-        //Logo der ImageView hinzufügen
-        ImageView Logo = (ImageView) findViewById(R.id.logo);
-        Logo.setBackgroundResource(R.drawable.logo_small);
 
         //Suchen Button zuweisen
         SearchButton = (SubmitButton) findViewById(R.id.search_button);

@@ -16,6 +16,19 @@ public class Tankstelle implements Serializable {
     private double e5 ;
     private double e10 ;
     private boolean isOpen = false;
+    private String housnumber;
+    private int postCode;
+    private int imageRessource;
+
+    public Tankstelle()
+    {
+
+    }
+
+
+    public int getImageRessource() { return imageRessource; }
+
+    public void setImageRessource(int imageRessource) { this.imageRessource = imageRessource; }
 
     public String getId() {
         return id;
@@ -113,13 +126,6 @@ public class Tankstelle implements Serializable {
         this.postCode = postCode;
     }
 
-    private String housnumber;
-    private int postCode;
-
-    public Tankstelle()
-    {
-
-    }
     public String getName() {
         return name;
     }
