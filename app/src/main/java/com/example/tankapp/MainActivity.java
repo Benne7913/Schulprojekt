@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity{
 
         //Logo der ImageView hinzufügen
         ImageView Logo = (ImageView) findViewById(R.id.logo);
-        Logo.setBackgroundResource(R.drawable.tank1);
+        Logo.setBackgroundResource(R.drawable.logo_small);
 
         //Suchen Button zuweisen
         SearchButton = (SubmitButton) findViewById(R.id.search_button);
