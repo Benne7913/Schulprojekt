@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Model implements Serializable
 {
-    private int radius = 5;
+    private int radius = 10;
     // Creating a list
     public List<Tankstelle> m_kTankstellen;
     private String lat="";

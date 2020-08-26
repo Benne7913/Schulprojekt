@@ -24,7 +24,8 @@
         <activity
             android:name=".Info"
             android:label="Info"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity">
+        </activity>
         <activity
             android:name=".AllgEinstellungen"
             android:label="Allgemein"

@@ -12,26 +12,13 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -39,9 +26,6 @@ public class MainActivity extends AppCompatActivity{
     AnimationDrawable SearchAnimation;
     private BroadcastReceiver MyReceiver = null;
     private GpsTracker gpsTracker;
-    private String latitude;
-    private String longitude;
-
     private Model m_kModel;
 
     @Override
@@ -68,14 +52,23 @@ public class MainActivity extends AppCompatActivity{
 
         SearchImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 SearchAnimation.start();
-                getLocation(view);
 
-                //Aufruf der neuen Activity
-                Intent intent = new Intent(MainActivity.this, Results_Actvity.class);
-                intent.putExtra("model",m_kModel);
-                startActivity(intent);
+                int duration = 0;
+                for (int i=0; i<SearchAnimation.getNumberOfFrames(); i++){
+                    duration = duration + SearchAnimation.getDuration(i);
+                }
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable(){
+                    public void run() {
+                        getLocation(view);
+                        //Aufruf der neuen Activity
+                        Intent intentRes = new Intent(MainActivity.this, Results_Actvity.class);
+                        intentRes.putExtra("model",m_kModel);
+                        startActivity(intentRes);
+                    }
+                }, duration);
 
             }
         });
@@ -96,7 +89,6 @@ public class MainActivity extends AppCompatActivity{
                     Intent intentAllg = new Intent(this, AllgEinstellungen.class);
                     intentAllg.putExtra("model",m_kModel);
                     this.startActivity(intentAllg);
-
                     return true;
             case R.id.info:
                     Intent intentInfo = new Intent(this, Info.class);
@@ -108,9 +100,6 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    public void broadcastIntent() {
-        registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-    }
     @Override
     protected void onPause() {
         super.onPause();
@@ -120,16 +109,15 @@ public class MainActivity extends AppCompatActivity{
     public void getLocation(View view){
         gpsTracker = new GpsTracker(MainActivity.this);
         if(gpsTracker.canGetLocation()){
-            latitude = String.valueOf(gpsTracker.getLatitude());
-            longitude = String.valueOf(gpsTracker.getLongitude());
-            m_kModel.setLat(latitude);
-            m_kModel.setLng(longitude);
-            //Toast.makeText(MainActivity.this, latitude + " + " + longitude,
-                //    Toast.LENGTH_LONG).show();
+            m_kModel.setLat(String.valueOf(gpsTracker.getLatitude()));
+            m_kModel.setLng(String.valueOf(gpsTracker.getLongitude()));
         }else{
             gpsTracker.showSettingsAlert();
         }
     }
 
+    public void broadcastIntent() {
+        registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
 
 }
