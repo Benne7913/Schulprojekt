@@ -25,7 +25,7 @@ public class Results_Actvity extends AppCompatActivity {
 /////////////////////////////////////////////////////////////////////////////////
     private EreignisHandler ereignisHandler = new EreignisHandler();
 
-    private class EreignisHandler extends Handler {
+    class EreignisHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             String message = (String) msg.obj;
@@ -148,7 +148,7 @@ public class Results_Actvity extends AppCompatActivity {
                 gasstation.setDiesel    (arr.getJSONObject(i).getDouble ("diesel"       ));
                 gasstation.setE5        (arr.getJSONObject(i).getDouble ("e5"           ));
                 gasstation.setE10       (arr.getJSONObject(i).getDouble ("e10"          ));
-                gasstation.isOpen       (arr.getJSONObject(i).getBoolean("isOpen"       ));
+                gasstation.setOpen      (arr.getJSONObject(i).getBoolean("isOpen"       ));
                 gasstation.setHousnumber(arr.getJSONObject(i).getString ("houseNumber"  ));
                 gasstation.setPostCode  (arr.getJSONObject(i).getInt    ("postCode"     ));
 

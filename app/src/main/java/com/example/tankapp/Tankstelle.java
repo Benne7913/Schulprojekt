@@ -102,7 +102,7 @@ public class Tankstelle implements Serializable {
         this.e10 = e10;
     }
 
-    public boolean isOpen(boolean isopen) {
+    public boolean isOpen() {
         return isOpen;
     }
 

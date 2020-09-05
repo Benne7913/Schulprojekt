@@ -61,10 +61,6 @@ public class APIService extends Service
         super.onDestroy();
     }
 
-    public void getInfoFromAPI()
-    {
-
-    }
 }
 
 
