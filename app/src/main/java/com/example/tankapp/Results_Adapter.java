@@ -5,17 +5,16 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Results_Holder> {
@@ -32,18 +31,23 @@ public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Result
     @NonNull
     @Override
     public Results_Adapter.Results_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view  = inflater.inflate(R.layout.result_row, parent, false);
+        View view   = LayoutInflater.from(context).inflate(R.layout.result_row,parent,false);
+        //View view  = inflater.inflate(R.layout.result_row, parent, false);
         return new Results_Holder(view);
     }
 
     //Listet alle Tankstellen auf
     @Override
     public void onBindViewHolder(@NonNull Results_Adapter.Results_Holder holder, final int position) {
-            if (!m_kTankstellen.get(position).getBrand().isEmpty())
+        //https://www.youtube.com/watch?v=rJ-7KgMAJUo&t=249s
+        holder.imageView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition_animation));
+
+        holder.relativeLayout.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_card_animation));
+
+
+        if (!m_kTankstellen.get(position).getBrand().isEmpty())
             {
                 holder.titleText.setText(m_kTankstellen.get(position).getBrand());
-                holder.streetText.setText(m_kTankstellen.get(position).getStreet() + " " + m_kTankstellen.get(position).getHousnumber().toString());
                 holder.rangeText.setText("Entfernung: " + String.valueOf(m_kTankstellen.get(position).getDist() + " km"));
 
                 switch (m_kTankstellen.get(position).getBrand().toLowerCase()) {
@@ -103,6 +107,7 @@ public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Result
             }
 
 
+
     }
 
     @Override
@@ -113,18 +118,20 @@ public class Results_Adapter extends RecyclerView.Adapter<Results_Adapter.Result
 
     public class Results_Holder extends RecyclerView.ViewHolder{
 
-        private TextView titleText, streetText ,rangeText;
+        private TextView titleText ,rangeText;
         private ImageView imageView;
         ConstraintLayout mainLayout;
+        RelativeLayout relativeLayout;
 
         public Results_Holder(@NonNull View itemView) {
             super(itemView);
-            titleText = itemView.findViewById(R.id.textView);
-            streetText = itemView.findViewById(R.id.textStreet);
-            rangeText = itemView.findViewById(R.id.textRange);
-            imageView = itemView.findViewById(R.id.imageView);
+            titleText = itemView.findViewById(R.id.text_gasstation);
 
-            mainLayout= itemView.findViewById(R.id.mainLayout);
+            rangeText = itemView.findViewById(R.id.text_gasstation);
+            imageView = itemView.findViewById(R.id.image_Logo);
+
+            mainLayout= itemView.findViewById(R.id.constraintLayout);
+            relativeLayout = itemView.findViewById(R.id.card_relativeLayout);
         }
     }
 }

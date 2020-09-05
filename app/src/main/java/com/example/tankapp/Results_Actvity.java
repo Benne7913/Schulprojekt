@@ -44,7 +44,7 @@ public class Results_Actvity extends AppCompatActivity {
         m_kModel = (Model) intent.getSerializableExtra("model");
 
         //Ladebalken
-        runLoading();
+       // runLoading();
 
         //Service call
         callAPIService();
