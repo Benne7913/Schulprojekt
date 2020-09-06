@@ -31,7 +31,7 @@ public class Setting_Activity extends AppCompatActivity {
 
         //Model bekommen
         Intent intent = getIntent();
-        m_kGeneralModel = (General_Model) intent.getSerializableExtra("Model");
+        m_kGeneralModel = (General_Model) intent.getSerializableExtra("sendToSettingActivity");
 
         //Spinner
         String[] firstItem = {};
@@ -42,7 +42,9 @@ public class Setting_Activity extends AppCompatActivity {
         lcosRange.add("20");
         lcosRange.add("25");
         lcosRange.add("30");
+        lcosRange.add("35");
         lcosRange.add("40");
+        lcosRange.add("50");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lcosRange);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
@@ -83,7 +85,7 @@ public class Setting_Activity extends AppCompatActivity {
         switch(item.getItemId()){
             case android.R.id.home:
                 Intent intent = getIntent();
-                intent.putExtra("result", m_kGeneralModel);
+                intent.putExtra("receiveToMainActivityFromSetting", m_kGeneralModel);
                 setResult(RESULT_OK,intent);
                 finish();
                 return true;

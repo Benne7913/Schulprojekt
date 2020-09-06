@@ -1,5 +1,6 @@
 package com.example.tankapp.activitys;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.example.tankapp.services.API_Service;
 import com.example.tankapp.model.General_Model;
@@ -45,9 +47,12 @@ public class Result_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         //Model bekommen
         Intent intent = getIntent();
-        m_kGeneralModel = (General_Model) intent.getSerializableExtra("model");
+        m_kGeneralModel = (General_Model) intent.getSerializableExtra("sendToResultActivity");
 
         //Ladebalken
        // runLoading();
@@ -165,5 +170,18 @@ public class Result_Activity extends AppCompatActivity {
             Log.e("Error JSON", "Could not parse malformed JSON: \"" + json + "\"");
         }
         createItemList(lkGasstations);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home:
+                Intent intent = getIntent();
+                intent.putExtra("receiveToMainActivityFromResult", m_kGeneralModel);
+                setResult(RESULT_OK,intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

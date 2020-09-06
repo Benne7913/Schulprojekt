@@ -73,8 +73,9 @@ public class MainActivity extends AppCompatActivity{
                         if(getLocation()) {
                             //call new activity
                             Intent intentRes = new Intent(MainActivity.this, Result_Activity.class);
-                            intentRes.putExtra("model", m_kGeneralModel);
-                            startActivity(intentRes);
+                            intentRes.putExtra("sendToResultActivity", m_kGeneralModel);
+                            startActivityForResult(intentRes , 2);
+                            //startActivity(intentRes);
                         }
                     }}, duration);
             }
@@ -91,13 +92,12 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.allgemein:
+            case R.id.allgemein: //start settings_activity
                     Intent intentAllg = new Intent(this, Setting_Activity.class);
-                    intentAllg.putExtra("Model", m_kGeneralModel);
-
+                    intentAllg.putExtra("sendToSettingActivity", m_kGeneralModel);
                     startActivityForResult(intentAllg , 1);
                     return true;
-            case R.id.info:
+            case R.id.info://start information_activity
                     Intent intentInfo = new Intent(this, Appinfo_Activity.class);
                     this.startActivity(intentInfo);
                     return true;
@@ -117,16 +117,22 @@ public class MainActivity extends AppCompatActivity{
         super.onResume();
         registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
+
     //receive the modal back from settings_activity
     @SuppressLint("WrongConstant")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1)
-            if (resultCode == RESULT_OK) //data was receive
-                m_kGeneralModel = (General_Model) data.getSerializableExtra("result");
-        if(resultCode == RESULT_CANCELED)//problem with receive data
+        if (requestCode == 1) //receive data from setting_activity
+            if (resultCode == RESULT_OK)
+                m_kGeneralModel = (General_Model) data.getSerializableExtra("receiveToMainActivityFromSetting");
+
+        if (requestCode == 2) //receive data from result_activity
+            if (resultCode == RESULT_OK)
+                m_kGeneralModel = (General_Model) data.getSerializableExtra("receiveToMainActivityFromResult");
+
+        if(resultCode == RESULT_CANCELED) //problems with received data
             Toast.makeText(this, "Daten konnten nicht zurückgestellt werden",0).show();
     }
 
