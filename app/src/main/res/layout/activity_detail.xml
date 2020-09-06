@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgrounddetails"
+    android:background="@drawable/logo_company_incorner"
     tools:context=".activitys.Detail_Activity">
 
     <ImageView
@@ -33,27 +33,13 @@
         android:layout_marginRight="15dp"
         android:gravity="center_vertical"
         android:text="Tankstellenname"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/result_detail_gasstationlogo"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/result_text_distance"
-        android:layout_width="105dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="95dp"
-        android:gravity="center_vertical"
-        android:text="Distance"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/result_image_distance"
-        app:layout_constraintTop_toBottomOf="@+id/textTankstellenname" />
 
     <TextView
         android:id="@+id/result_text_E5"
@@ -64,7 +50,7 @@
         android:layout_marginTop="4dp"
         android:gravity="center_vertical"
         android:text="E5"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/result_text_E10" />
@@ -100,7 +86,7 @@
         android:layout_marginTop="48dp"
         android:gravity="center_vertical"
         android:text="Diesel"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/text_result_City" />
@@ -116,23 +102,12 @@
         android:layout_marginRight="60dp"
         android:gravity="center_vertical"
         android:text="City"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/result_image_place"
         app:layout_constraintTop_toBottomOf="@+id/text_result_Street" />
-
-    <ImageView
-        android:id="@+id/result_image_distance"
-        android:layout_width="69dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="70dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result_detail_gasstationlogo"
-        app:srcCompat="@drawable/distance" />
 
     <TextView
         android:id="@+id/text_result_Street"
@@ -145,7 +120,7 @@
         android:layout_marginRight="60dp"
         android:gravity="center_vertical"
         android:text="Strasse"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
@@ -158,14 +133,39 @@
         android:layout_height="59dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.239"
+        app:layout_constraintHorizontal_bias="0.292"
         app:layout_constraintStart_toEndOf="@+id/result_text_distance"
         app:layout_constraintTop_toBottomOf="@+id/textTankstellenname"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/result_image_distance"
+        android:layout_width="69dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_detail_gasstationlogo"
+        app:srcCompat="@drawable/distance" />
+
+    <TextView
+        android:id="@+id/result_text_distance"
+        android:layout_width="105dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="72dp"
+        android:gravity="center_vertical"
+        android:text="Distance"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/result_image_distance"
+        app:layout_constraintTop_toBottomOf="@+id/textTankstellenname" />
 
     <TextView
         android:id="@+id/result_text_E10"
@@ -176,9 +176,39 @@
         android:layout_marginTop="4dp"
         android:gravity="center_vertical"
         android:text="E10"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/result_text_diesel" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_detail_gasstationlogo" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_image_openclose" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/accent"
+        app:layout_constraintTop_toBottomOf="@+id/text_result_City"
+        tools:layout_editor_absoluteX="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

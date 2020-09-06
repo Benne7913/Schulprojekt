@@ -10,5 +10,5 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/backgrounddetails" />
+        android:background="@drawable/background_withlogo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
