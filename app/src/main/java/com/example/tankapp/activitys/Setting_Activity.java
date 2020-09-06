@@ -1,24 +1,27 @@
-package com.example.tankapp;
+package com.example.tankapp.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-public class AllgEinstellungen extends AppCompatActivity {
+import com.example.tankapp.model.General_Model;
+import com.example.tankapp.R;
 
-    private Model m_kModel;
+public class Setting_Activity extends AppCompatActivity {
+
+    private General_Model m_kGeneralModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_allg_einstellungen);
+        setContentView(R.layout.activity_setting);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Model bekommen
         Intent intent = getIntent();
-        m_kModel = (Model) intent.getSerializableExtra("model");
+        m_kGeneralModel = (General_Model) intent.getSerializableExtra("model");
     }
 
 

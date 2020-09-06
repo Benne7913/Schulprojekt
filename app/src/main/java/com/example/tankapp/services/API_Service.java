@@ -1,4 +1,4 @@
-package com.example.tankapp;
+package com.example.tankapp.services;
 
 import android.app.Service;
 import android.content.Intent;
@@ -12,12 +12,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tankapp.activitys.Result_Activity;
 
 
-public class APIService extends Service
+public class API_Service extends Service
 {
     public static Handler ereignisHandler;
-    public static Results_Actvity view;
+    public static Result_Activity view;
     public static String url = " ";
 
     @Override

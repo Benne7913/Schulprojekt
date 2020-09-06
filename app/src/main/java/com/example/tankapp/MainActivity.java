@@ -17,6 +17,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.tankapp.activitys.Setting_Activity;
+import com.example.tankapp.activitys.Appinfo_Activity;
+import com.example.tankapp.activitys.Result_Activity;
+import com.example.tankapp.model.General_Model;
 import com.spark.submitbutton.SubmitButton;
 
 
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity{
 
     private BroadcastReceiver MyReceiver = null;
     private GpsTracker gpsTracker;
-    private Model m_kModel;
+    private General_Model m_kGeneralModel;
     private SubmitButton SearchButton;
 
     @Override
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         //Model initalisieren
-        m_kModel = new Model();
+        m_kGeneralModel = new General_Model();
 
         //Registrieren des Internet-Receivers
         MyReceiver = new MyReceiver();
@@ -62,8 +66,8 @@ public class MainActivity extends AppCompatActivity{
                     public void run() {
                         if(getLocation()) {
                             //Aufruf der neuen Activity
-                            Intent intentRes = new Intent(MainActivity.this, Results_Actvity.class);
-                            intentRes.putExtra("model", m_kModel);
+                            Intent intentRes = new Intent(MainActivity.this, Result_Activity.class);
+                            intentRes.putExtra("model", m_kGeneralModel);
                             startActivity(intentRes);
                         }
                     }}, duration);
@@ -82,12 +86,12 @@ public class MainActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.allgemein:
-                    Intent intentAllg = new Intent(this, AllgEinstellungen.class);
-                    intentAllg.putExtra("model",m_kModel);
+                    Intent intentAllg = new Intent(this, Setting_Activity.class);
+                    intentAllg.putExtra("model", m_kGeneralModel);
                     this.startActivity(intentAllg);
                     return true;
             case R.id.info:
-                    Intent intentInfo = new Intent(this, Info.class);
+                    Intent intentInfo = new Intent(this, Appinfo_Activity.class);
                     this.startActivity(intentInfo);
                     return true;
             default:
@@ -110,8 +114,8 @@ public class MainActivity extends AppCompatActivity{
     public boolean getLocation(){
         gpsTracker = new GpsTracker(this);
         if(gpsTracker.canGetLocation()){
-            m_kModel.setLat(String.valueOf(gpsTracker.getLatitude()));
-            m_kModel.setLng(String.valueOf(gpsTracker.getLongitude()));
+            m_kGeneralModel.setLat(String.valueOf(gpsTracker.getLatitude()));
+            m_kGeneralModel.setLng(String.valueOf(gpsTracker.getLongitude()));
             return true;
         }else{
             gpsTracker.showSettingsAlert();

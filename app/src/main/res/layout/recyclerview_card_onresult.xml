@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    android:id="@+id/card_constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp">
@@ -10,8 +10,8 @@
 
     <RelativeLayout
         android:id="@+id/card_relativeLayout"
-        android:layout_width="386dp"
-        android:layout_height="95dp"
+        android:layout_width="372dp"
+        android:layout_height="105dp"
         android:layout_marginStart="24dp"
         android:background="@drawable/card_bg"
         android:paddingBottom="16dp"
@@ -20,37 +20,41 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/text_gasstation"
-            android:layout_width="118dp"
-            android:layout_height="33dp"
+            android:id="@+id/card_text_gasstation"
+            android:layout_width="307dp"
+            android:layout_height="29dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginTop="11dp"
-            android:text="gasstation"
-            android:textColor="@color/black"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="41dp"
+            android:layout_marginLeft="41dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="38dp"
+            android:layout_marginRight="38dp"
+            android:text="Gasstation"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_range"
+            android:id="@+id/card_text_range"
             android:layout_width="327dp"
             android:layout_height="37dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="54dp"
             android:text="Range"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/image_Logo"
+        android:id="@+id/card_image_Logo"
         android:layout_width="56dp"
         android:layout_height="49dp"
         android:layout_marginStart="8dp"
@@ -62,12 +66,5 @@
         app:layout_constraintStart_toStartOf="@+id/card_relativeLayout"
         app:layout_constraintTop_toTopOf="@+id/card_relativeLayout"
         tools:srcCompat="@tools:sample/avatars" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

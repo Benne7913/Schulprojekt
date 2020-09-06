@@ -1,4 +1,4 @@
-package com.example.tankapp;
+package com.example.tankapp.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,12 +8,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tankapp.R;
+import com.example.tankapp.objects.Gasstation;
+
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class ResultInfo_activity extends AppCompatActivity {
+public class Detail_Activity extends AppCompatActivity {
 
-    private Tankstelle m_kTankstelle;
+    private Gasstation m_kGasstation;
 
     private TextView    textName;
     private TextView    textStreet;
@@ -29,7 +32,7 @@ public class ResultInfo_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resultinfo);
+        setContentView(R.layout.activity_detail);
 
         textName    = findViewById(R.id.textTankstellenname);
         textStreet  = findViewById(R.id.text_result_Street);
@@ -52,7 +55,7 @@ public class ResultInfo_activity extends AppCompatActivity {
         if(getIntent().hasExtra("tankstelle"))
         {
             Intent intent = getIntent();
-            m_kTankstelle = (Tankstelle) intent.getSerializableExtra("tankstelle");
+            m_kGasstation = (Gasstation) intent.getSerializableExtra("tankstelle");
 
         }else{
             Toast.makeText(this, "Keine Daten verfügbar", Toast.LENGTH_SHORT).show();
@@ -61,27 +64,27 @@ public class ResultInfo_activity extends AppCompatActivity {
 
     private void setData()
     {
-        textName.setText(m_kTankstelle.getBrand());
-        textStreet.setText(m_kTankstelle.getStreet());
+        textName.setText(m_kGasstation.getBrand());
+        textStreet.setText(m_kGasstation.getStreet());
 
-        String lsCityplace = m_kTankstelle.getPostCode() + " " + m_kTankstelle.getPlace();
+        String lsCityplace = m_kGasstation.getPostCode() + " " + m_kGasstation.getPlace();
         textCity.setText(lsCityplace);
 
         //Distance
-        textDistance.setText(m_kTankstelle.getDist() + " km");
+        textDistance.setText(m_kGasstation.getDist() + " km");
 
         //Price
-        textDiesel.setText("Diesel: " + priceEuro(m_kTankstelle.getDiesel()));
-        textE10.setText("E10:     " + priceEuro(m_kTankstelle.getE10()));
-        textE5.setText("E5:       " + priceEuro(m_kTankstelle.getE5()));
+        textDiesel.setText("Diesel: " + priceEuro(m_kGasstation.getDiesel()));
+        textE10.setText("E10:     " + priceEuro(m_kGasstation.getE10()));
+        textE5.setText("E5:       " + priceEuro(m_kGasstation.getE5()));
 
         //open or close
-        if(m_kTankstelle.isOpen())
+        if(m_kGasstation.isOpen())
             imageOpenClose.setImageResource(R.drawable.oeffnen);
         else
             imageOpenClose.setImageResource(R.drawable.schliessen);
 
-        imageLogo.setImageResource(m_kTankstelle.getImageRessource());
+        imageLogo.setImageResource(m_kGasstation.getImageRessource());
 
 
     }
