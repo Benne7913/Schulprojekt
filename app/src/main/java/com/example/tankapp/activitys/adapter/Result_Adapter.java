@@ -98,6 +98,10 @@ public class Result_Adapter extends RecyclerView.Adapter<Result_Adapter.Results_
                     holder.imageView.setImageResource(R.drawable.logo_gasstation_ed);
                     this.m_kTankstellen.get(position).setImageRessource(R.drawable.logo_gasstation_ed);
                     break;
+                case "westfalen tankstelle":
+                    holder.imageView.setImageResource(R.drawable.logo_gasstation_westfalen);
+                    this.m_kTankstellen.get(position).setImageRessource(R.drawable.logo_gasstation_westfalen);
+                    break;
                 default:
                     holder.imageView.setImageResource(R.drawable.tanklogo);
                     this.m_kTankstellen.get(position).setImageRessource(R.drawable.tanklogo);
