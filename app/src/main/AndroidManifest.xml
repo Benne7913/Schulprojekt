@@ -32,7 +32,7 @@
         <activity
             android:name=".activitys.Setting_Activity"
             android:label="Allgemein"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
