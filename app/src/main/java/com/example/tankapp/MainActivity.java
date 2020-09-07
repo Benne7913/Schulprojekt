@@ -1,10 +1,12 @@
 package com.example.tankapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -16,7 +18,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.tankapp.activitys.Setting_Activity;
+import com.example.tankapp.activitys.Appinfo_Activity;
+import com.example.tankapp.activitys.Result_Activity;
+import com.example.tankapp.model.General_Model;
 import com.spark.submitbutton.SubmitButton;
 
 
@@ -24,7 +31,7 @@ public class MainActivity extends AppCompatActivity{
 
     private BroadcastReceiver MyReceiver = null;
     private GpsTracker gpsTracker;
-    private Model m_kModel;
+    private General_Model m_kGeneralModel;
     private SubmitButton SearchButton;
 
     @Override
@@ -32,15 +39,18 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Model initalisieren
-        m_kModel = new Model();
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        //Registrieren des Internet-Receivers
+        //initialize model
+        if (m_kGeneralModel == null)
+            m_kGeneralModel = new General_Model();
+
+        //register internet-receivers
         MyReceiver = new MyReceiver();
         broadcastIntent();
 
 
-        //Suchen Button zuweisen
+        //assign searchbutton
         SearchButton = (SubmitButton) findViewById(R.id.search_button);
 
         try {
@@ -57,14 +67,15 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 int duration = 3000;
                 Handler handler = new Handler();
-                //Warten bis die Animation zu Ende ist
+                //wait for animation ends
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         if(getLocation()) {
-                            //Aufruf der neuen Activity
-                            Intent intentRes = new Intent(MainActivity.this, Results_Actvity.class);
-                            intentRes.putExtra("model", m_kModel);
-                            startActivity(intentRes);
+                            //call new activity
+                            Intent intentRes = new Intent(MainActivity.this, Result_Activity.class);
+                            intentRes.putExtra("sendToResultActivity", m_kGeneralModel);
+                            startActivityForResult(intentRes , 2);
+                            //startActivity(intentRes);
                         }
                     }}, duration);
             }
@@ -81,13 +92,13 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.allgemein:
-                    Intent intentAllg = new Intent(this, AllgEinstellungen.class);
-                    intentAllg.putExtra("model",m_kModel);
-                    this.startActivity(intentAllg);
+            case R.id.allgemein: //start settings_activity
+                    Intent intentAllg = new Intent(this, Setting_Activity.class);
+                    intentAllg.putExtra("sendToSettingActivity", m_kGeneralModel);
+                    startActivityForResult(intentAllg , 1);
                     return true;
-            case R.id.info:
-                    Intent intentInfo = new Intent(this, Info.class);
+            case R.id.info://start information_activity
+                    Intent intentInfo = new Intent(this, Appinfo_Activity.class);
                     this.startActivity(intentInfo);
                     return true;
             default:
@@ -107,11 +118,29 @@ public class MainActivity extends AppCompatActivity{
         registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
+    //receive the modal back from settings_activity
+    @SuppressLint("WrongConstant")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) //receive data from setting_activity
+            if (resultCode == RESULT_OK)
+                m_kGeneralModel = (General_Model) data.getSerializableExtra("receiveToMainActivityFromSetting");
+
+        if (requestCode == 2) //receive data from result_activity
+            if (resultCode == RESULT_OK)
+                m_kGeneralModel = (General_Model) data.getSerializableExtra("receiveToMainActivityFromResult");
+
+        if(resultCode == RESULT_CANCELED) //problems with received data
+            Toast.makeText(this, "Daten konnten nicht zurückgestellt werden",0).show();
+    }
+
     public boolean getLocation(){
         gpsTracker = new GpsTracker(this);
         if(gpsTracker.canGetLocation()){
-            m_kModel.setLat(String.valueOf(gpsTracker.getLatitude()));
-            m_kModel.setLng(String.valueOf(gpsTracker.getLongitude()));
+            m_kGeneralModel.setLat(String.valueOf(gpsTracker.getLatitude()));
+            m_kGeneralModel.setLng(String.valueOf(gpsTracker.getLongitude()));
             return true;
         }else{
             gpsTracker.showSettingsAlert();
@@ -122,4 +151,6 @@ public class MainActivity extends AppCompatActivity{
     public void broadcastIntent() {
         registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
+
+
 }

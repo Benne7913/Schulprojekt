@@ -1,8 +1,8 @@
-package com.example.tankapp;
+package com.example.tankapp.objects;
 
 import java.io.Serializable;
 
-public class Tankstelle implements Serializable {
+public class Gasstation implements Serializable {
 
     private String id;
     private String name ;
@@ -20,7 +20,7 @@ public class Tankstelle implements Serializable {
     private int postCode;
     private int imageRessource;
 
-    public Tankstelle()
+    public Gasstation()
     {
 
     }
@@ -102,7 +102,7 @@ public class Tankstelle implements Serializable {
         this.e10 = e10;
     }
 
-    public boolean isOpen(boolean isopen) {
+    public boolean isOpen() {
         return isOpen;
     }
 
