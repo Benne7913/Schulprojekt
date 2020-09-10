@@ -16,23 +16,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Results_Actvity"
+            android:name=".activitys.Result_Activity"
             android:label="Ergebnisse"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".ResultInfo_activity"
+            android:name=".activitys.Detail_Activity"
             android:label="Information"
             android:autoRemoveFromRecents="true"
-            android:parentActivityName=".Results_Actvity"/>
+            android:parentActivityName=".activitys.Result_Activity"/>
         <activity
-            android:name=".Info"
+            android:name=".activitys.Appinfo_Activity"
             android:label="Info"
             android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".AllgEinstellungen"
+            android:name=".activitys.Setting_Activity"
             android:label="Allgemein"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".APIService" />
+        <service android:name=".services.API_Service" />
 
         <receiver android:name=".MyReceiver">
             <intent-filter>
