@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity{
         {
             Log.e("Error JSON", "Could not parse malformed JSON: \"" + json + "\"");
         }
-        m_kGeneralModel.m_kgasstation = lkGasstations;
+        m_kGeneralModel.setGasstaions(lkGasstations);
 
         callResultActivity();
     }

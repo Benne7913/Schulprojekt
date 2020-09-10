@@ -13,11 +13,12 @@ import java.util.List;
 public class General_Model implements Serializable
 {
     private String radius = "10";
+    private String anzeige = "100";
     // Creating a list
-    public List<Gasstation> m_kTankstellen;
+
     private String lat="";
     private String lng="";
-    public ArrayList<Gasstation> m_kgasstation;
+    private ArrayList<Gasstation> m_kgasstation;
 
 
     public General_Model()
@@ -44,5 +45,25 @@ public class General_Model implements Serializable
 
     public void setLng(String lng) {
         this.lng = lng;
+    }
+
+    public ArrayList<Gasstation> getGasstaions()
+    {
+        return this.m_kgasstation;
+    }
+
+    public void setGasstaions(ArrayList<Gasstation> pkcoGasstations)
+    {
+        this.m_kgasstation = pkcoGasstations;
+    }
+
+    public String getAnzeige()
+    {
+        return this.anzeige;
+    }
+
+    public void setAnzeige(String piAnzeige)
+    {
+        this.anzeige = piAnzeige;
     }
 }

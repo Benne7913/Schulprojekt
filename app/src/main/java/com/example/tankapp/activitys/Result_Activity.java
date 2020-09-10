@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Result_Activity extends AppCompatActivity {
 
     public static boolean isChildActiv = false;
-    private RecyclerView m_krcView;
+    private RecyclerView rcView;
     private Result_Adapter m_krcAdapter;
     private General_Model m_kGeneralModel;
     private SwipeRefreshLayout m_kSwipeLayout;
@@ -41,14 +41,14 @@ public class Result_Activity extends AppCompatActivity {
         m_kGeneralModel = (General_Model) intent.getSerializableExtra("sendToResultActivity");
 
         //first time to add data inside recycler-view
-        refreshList(m_kGeneralModel.m_kgasstation);
+        refreshList(m_kGeneralModel.getGasstaions());
 
         //refresh recycler-view
         this.m_kSwipeLayout = findViewById(R.id.swipeRefreshLayout);
         this.m_kSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ArrayList<Gasstation> gas =  m_kGeneralModel.m_kgasstation;
+                ArrayList<Gasstation> gas =  m_kGeneralModel.getGasstaions();
 
                 refreshList(gas);
                 m_krcAdapter.notifyDataSetChanged();
@@ -88,14 +88,15 @@ public class Result_Activity extends AppCompatActivity {
 //////////////////////////////////////////////////////////////
 // OWN METHODS
 //////////////////////////////////////////////////////////////
-    private void refreshList(ArrayList<Gasstation> pkcoGasstations)
+
+    private void refreshList(ArrayList<Gasstation> pkGasstations)
     {
-        this.m_krcView = findViewById(R.id.view);
+        //RecyclerView mit Klasse verbinden
+        rcView = findViewById(R.id.view);
         Intent intent = getIntent();
 
-        //add adapter to recycler-view
-        this.m_krcAdapter = new Result_Adapter(this, pkcoGasstations );
-        this.m_krcView.setAdapter(this.m_krcAdapter);
-        this.m_krcView.setLayoutManager(new LinearLayoutManager(this));
+        m_krcAdapter = new Result_Adapter(this, pkGasstations );
+        rcView.setAdapter(m_krcAdapter);
+        rcView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
