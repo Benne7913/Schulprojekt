@@ -6,6 +6,8 @@ package com.example.tankapp.model;
 import com.example.tankapp.objects.Gasstation;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class General_Model implements Serializable
@@ -15,6 +17,7 @@ public class General_Model implements Serializable
     public List<Gasstation> m_kTankstellen;
     private String lat="";
     private String lng="";
+    public ArrayList<Gasstation> m_kgasstation;
 
 
     public General_Model()
