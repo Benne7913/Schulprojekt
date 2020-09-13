@@ -30,6 +30,7 @@ import com.example.tankapp.activitys.adapter.Result_Adapter;
 import com.example.tankapp.model.General_Model;
 import com.example.tankapp.objects.Gasstation;
 import com.example.tankapp.services.API_Service;
+import com.example.tankapp.utils.Filter;
 import com.example.tankapp.utils.Utils;
 import com.spark.submitbutton.SubmitButton;
 
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity{
         //initialize model
         if (m_kGeneralModel == null)
             m_kGeneralModel = new General_Model();
+
+
 
         //register internet-receivers
         MyReceiver = new MyReceiver();

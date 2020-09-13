@@ -4,6 +4,7 @@ package com.example.tankapp.model;
 
 
 import com.example.tankapp.objects.Gasstation;
+import com.example.tankapp.utils.Filter;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
@@ -21,9 +22,12 @@ public class General_Model implements Serializable
     private ArrayList<Gasstation> m_kgasstation;
 
 
+
+    private Filter filter;
+
     public General_Model()
     {
-
+        filter = new Filter();
     }
 
     //Getter & Setter
@@ -65,5 +69,13 @@ public class General_Model implements Serializable
     public void setAnzeige(String piAnzeige)
     {
         this.anzeige = piAnzeige;
+    }
+
+    public Filter getFilter() {
+        return filter;
+    }
+
+    public void setFilter(Filter filter) {
+        this.filter = filter;
     }
 }
