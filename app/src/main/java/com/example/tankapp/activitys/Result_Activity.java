@@ -101,7 +101,11 @@ public class Result_Activity extends AppCompatActivity implements SwipeRefreshLa
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+
+                refreshList(tmp);
+                m_krcAdapter.notifyDataSetChanged();
                 m_kSwipeLayout.setRefreshing(false);
+
             }
         }, 2000);
     }
@@ -169,6 +173,7 @@ public class Result_Activity extends AppCompatActivity implements SwipeRefreshLa
 
                 m_kGeneralModel.setFilter(filter);
                 filterGasList();
+
                 filterdialog.dismiss();
 
             }
@@ -214,8 +219,8 @@ public class Result_Activity extends AppCompatActivity implements SwipeRefreshLa
                 tmp.add(gas.get(x));
 
 
-
-
+        m_kSwipeLayout.setRefreshing(true);
+        this.onRefresh();
 
     }
 //////////////////////////////////////////////////////////////
@@ -231,6 +236,7 @@ public class Result_Activity extends AppCompatActivity implements SwipeRefreshLa
         m_krcAdapter = new Result_Adapter(this, pkGasstations );
         rcView.setAdapter(m_krcAdapter);
         rcView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
 
