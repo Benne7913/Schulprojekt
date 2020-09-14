@@ -39,12 +39,9 @@ public class Setting_Activity extends AppCompatActivity {
         ArrayList<String> lcosRange = new ArrayList<>();
         lcosRange.add("5");
         lcosRange.add("10");
+        lcosRange.add("15");
         lcosRange.add("20");
         lcosRange.add("25");
-        lcosRange.add("30");
-        lcosRange.add("35");
-        lcosRange.add("40");
-        lcosRange.add("50");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lcosRange);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);

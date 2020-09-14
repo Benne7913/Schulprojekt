@@ -78,7 +78,7 @@ public class Result_Activity extends AppCompatActivity implements SwipeRefreshLa
 
         gas =  m_kGeneralModel.getGasstaions();
         tmp = new ArrayList<Gasstation>(gas);
-        //Collections.copy(list,zoo);
+
 
         //refresh recycler-view
         this.m_kSwipeLayout = findViewById(R.id.swipeRefreshLayout);
@@ -158,7 +158,11 @@ public class Result_Activity extends AppCompatActivity implements SwipeRefreshLa
         this.filterseekbar = (TextView) filterdialog.findViewById(R.id.seekbarValue);
         this.filterseekBar =(SeekBar) filterdialog.findViewById(R.id.filterseekBar);
 
-        this.filterseekbar.setText(String.valueOf(filterseekBar.getMin() + " km"));
+        //init filtercomponents
+        this.filterseekbar.setText((int)m_kGeneralModel.getFilter().getRange() + " km");
+        this.filterseekBar.setMax(Integer.parseInt(m_kGeneralModel.getRadius()));
+        this.filterseekBar.setProgress((int)m_kGeneralModel.getFilter().getRange() );
+
 
         this.filtercancel.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -194,15 +194,14 @@ public class MainActivity extends AppCompatActivity{
         {
             JSONObject obj = new JSONObject(json);
             JSONArray arr = obj.getJSONArray("stations");
-
             for (int i = 0; i < arr.length(); i++)
             {
-                Gasstation gas = GetGasStation(arr.getJSONObject(i));
-                if( gas != null){
-                    lkGasstations.add(gas);
-                }
+                Gasstation lkGasstation = Utils.getGasStation(arr.getJSONObject(i));
+                if( lkGasstation != null)
+                    lkGasstations.add(lkGasstation);
             }
-        } catch (Throwable t)
+        }
+        catch (Throwable t)
         {
             Log.e("Error JSON", "Could not parse malformed JSON: \"" + json + "\"");
         }
@@ -211,33 +210,6 @@ public class MainActivity extends AppCompatActivity{
         callResultActivity();
     }
 
-    private Gasstation GetGasStation(JSONObject pkJsonObj){
-        try
-        {
-            Gasstation gasstation = new Gasstation();
-                gasstation.setName      (pkJsonObj.getString ("name"         ));
-                gasstation.setId        (pkJsonObj.getString ("id"           ));
-                gasstation.setBrand     (pkJsonObj.getString ("brand"        ));
-                gasstation.setDist      (pkJsonObj.getDouble ("dist"         ));
-                gasstation.setStreet    (pkJsonObj.getString ("street"       ));
-                gasstation.setPlace     (pkJsonObj.getString ("place"        ));
-                gasstation.setLat       (pkJsonObj.getDouble ("lat"          ));
-                gasstation.setLng       (pkJsonObj.getDouble ("lng"          ));
-                gasstation.setDiesel    (pkJsonObj.getDouble ("diesel"       ));
-                gasstation.setE5        (pkJsonObj.getDouble ("e5"           ));
-                gasstation.setE10       (pkJsonObj.getDouble ("e10"          ));
-                gasstation.setOpen      (pkJsonObj.getBoolean("isOpen"       ));
-                gasstation.setHousnumber(pkJsonObj.getString ("houseNumber"  ));
-                gasstation.setPostCode  (pkJsonObj.getInt    ("postCode"     ));
-                return gasstation;
-            }
-        catch (JSONException e) {
-            Log.e("Error JSON", "Could not parse malformed JSON: \"");
-            return null;
-        }
-
-
-    }
 
     //start Result_Activity
     private void callResultActivity()

@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Filter implements Serializable {
 
 
-    private double range = 100.0;
+    private double range = 5.0;
 
 
 
