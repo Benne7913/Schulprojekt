@@ -8,7 +8,7 @@
     </corners>
 
     <solid
-        android:color="@color/black">
+        android:color="@color/background_filter_button">
 
     </solid>
 </shape>

@@ -9,6 +9,8 @@
     <color name="accent">#BC036433</color>
     <color name="background_light">#456525</color>
     <color name="background">#171516</color>
+    <color name="background_filter">#E9253A48</color>
+    <color name="background_filter_button">#347198</color>
 
 
 </resources>
