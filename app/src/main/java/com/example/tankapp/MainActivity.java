@@ -35,6 +35,7 @@ import com.example.tankapp.utils.Utils;
 import com.spark.submitbutton.SubmitButton;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -196,23 +197,10 @@ public class MainActivity extends AppCompatActivity{
 
             for (int i = 0; i < arr.length(); i++)
             {
-                Gasstation gasstation = new Gasstation();
-                gasstation.setName      (arr.getJSONObject(i).getString ("name"         ));
-                gasstation.setId        (arr.getJSONObject(i).getString ("id"           ));
-                gasstation.setBrand     (arr.getJSONObject(i).getString ("brand"        ));
-                gasstation.setDist      (arr.getJSONObject(i).getDouble ("dist"         ));
-                gasstation.setStreet    (arr.getJSONObject(i).getString ("street"       ));
-                gasstation.setPlace     (arr.getJSONObject(i).getString ("place"        ));
-                gasstation.setLat       (arr.getJSONObject(i).getDouble ("lat"          ));
-                gasstation.setLng       (arr.getJSONObject(i).getDouble ("lng"          ));
-                gasstation.setDiesel    (arr.getJSONObject(i).getDouble ("diesel"       ));
-                gasstation.setE5        (arr.getJSONObject(i).getDouble ("e5"           ));
-                gasstation.setE10       (arr.getJSONObject(i).getDouble ("e10"          ));
-                gasstation.setOpen      (arr.getJSONObject(i).getBoolean("isOpen"       ));
-                gasstation.setHousnumber(arr.getJSONObject(i).getString ("houseNumber"  ));
-                gasstation.setPostCode  (arr.getJSONObject(i).getInt    ("postCode"     ));
-
-                lkGasstations.add(gasstation);
+                Gasstation gas = GetGasStation(arr.getJSONObject(i));
+                if( gas != null){
+                    lkGasstations.add(gas);
+                }
             }
         } catch (Throwable t)
         {
@@ -221,6 +209,34 @@ public class MainActivity extends AppCompatActivity{
         m_kGeneralModel.setGasstaions(lkGasstations);
 
         callResultActivity();
+    }
+
+    private Gasstation GetGasStation(JSONObject pkJsonObj){
+        try
+        {
+            Gasstation gasstation = new Gasstation();
+                gasstation.setName      (pkJsonObj.getString ("name"         ));
+                gasstation.setId        (pkJsonObj.getString ("id"           ));
+                gasstation.setBrand     (pkJsonObj.getString ("brand"        ));
+                gasstation.setDist      (pkJsonObj.getDouble ("dist"         ));
+                gasstation.setStreet    (pkJsonObj.getString ("street"       ));
+                gasstation.setPlace     (pkJsonObj.getString ("place"        ));
+                gasstation.setLat       (pkJsonObj.getDouble ("lat"          ));
+                gasstation.setLng       (pkJsonObj.getDouble ("lng"          ));
+                gasstation.setDiesel    (pkJsonObj.getDouble ("diesel"       ));
+                gasstation.setE5        (pkJsonObj.getDouble ("e5"           ));
+                gasstation.setE10       (pkJsonObj.getDouble ("e10"          ));
+                gasstation.setOpen      (pkJsonObj.getBoolean("isOpen"       ));
+                gasstation.setHousnumber(pkJsonObj.getString ("houseNumber"  ));
+                gasstation.setPostCode  (pkJsonObj.getInt    ("postCode"     ));
+                return gasstation;
+            }
+        catch (JSONException e) {
+            Log.e("Error JSON", "Could not parse malformed JSON: \"");
+            return null;
+        }
+
+
     }
 
     //start Result_Activity
